@@ -410,6 +410,7 @@ cc_library(
         "//tensorflow_serving/apis:predict_cc_proto",
         "//tensorflow_serving/core:servable_handle",
         "//tensorflow_serving/model_servers:server_core",
+        "//tensorflow_serving/servables/tvm:predict_impl",
         "@com_google_absl//absl/strings",
         "@org_tensorflow//tensorflow/cc/saved_model:loader",
         "@org_tensorflow//tensorflow/core:lib",
@@ -429,6 +430,7 @@ cc_test(
     ],
     deps = [
         ":predict_impl",
+        "//tensorflow_serving/servables/tvm:predict_impl",
         ":saved_model_bundle_source_adapter_cc_proto",
         ":session_bundle_config_cc_proto",
         "//tensorflow_serving/core:availability_preserving_policy",
@@ -515,6 +517,7 @@ cc_library(
         "//tensorflow_serving/apis:get_model_metadata_cc_proto",
         "//tensorflow_serving/core:servable_handle",
         "//tensorflow_serving/model_servers:server_core",
+        "//tensorflow_serving/servables/tvm:get_model_metadata_impl",
         "@org_tensorflow//tensorflow/cc/saved_model:loader",
         "@org_tensorflow//tensorflow/core:lib",
     ],
