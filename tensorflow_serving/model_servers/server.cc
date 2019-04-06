@@ -261,6 +261,13 @@ Status Server::BuildAndStart(const Options& server_options) {
     }
     options.platform_config_map = CreateTensorFlowPlatformConfigMap(
         session_bundle_config, use_saved_model);
+
+    // TVM
+    TVMConfig tvm_config;
+    tvm_config.set_session_target("tvm_target");
+    options.platform_config_map = CreateTVMPlatformConfigMap(
+        options.platform_config_map, tvm_config);
+
   } else {
     options.platform_config_map =
         ParsePlatformConfigMap(server_options.platform_config_file);

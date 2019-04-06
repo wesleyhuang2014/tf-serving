@@ -3,6 +3,7 @@
 
 load("@org_tensorflow//tensorflow:workspace.bzl", "tf_workspace")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
 
 def tf_serving_workspace():
     """All TensorFlow Serving external dependencies."""
@@ -47,4 +48,17 @@ def tf_serving_workspace():
         sha256 = "70158101eab7ed44fd9cc34e7f247b3cae91a8e4490745d9d6eb7edc184e4d96",
         strip_prefix = "libevent-release-2.1.8-stable",
         build_file = "@//third_party/libevent:BUILD",
+    )
+
+    # ===== tvm (tvm.ai) dependencies =====
+    new_git_repository(
+        name = "com_github_dmlc_tvm",
+        remote = "https://github.com/dmlc/tvm.git",
+        init_submodules = True,
+        branch = "master",
+        build_file = "@//third_party/tvm:BUILD",
+        patches = [
+            "@//third_party/tvm:patches/graph-metadata-API.diff"
+        ],
+        patch_args = ["-p1"],
     )
