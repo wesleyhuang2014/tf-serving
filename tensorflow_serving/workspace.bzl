@@ -4,6 +4,7 @@
 load("@org_tensorflow//third_party:repo.bzl", "tf_http_archive")
 load("@org_tensorflow//tensorflow:workspace.bzl", "tf_workspace")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
 
 def tf_serving_workspace():
     """All TensorFlow Serving external dependencies."""
@@ -105,4 +106,15 @@ def tf_serving_workspace():
             "https://mirror.bazel.build/github.com/google/glog/archive/028d37889a1e80e8a07da1b8945ac706259e5fd8.tar.gz",
             "https://github.com/google/glog/archive/028d37889a1e80e8a07da1b8945ac706259e5fd8.tar.gz",
         ],
+    # ===== tvm (tvm.ai) dependencies =====
+    new_git_repository(
+        name = "com_github_dmlc_tvm",
+        remote = "https://github.com/dmlc/tvm.git",
+        init_submodules = True,
+        branch = "master",
+        build_file = "@//third_party/tvm:BUILD",
+        patches = [
+            "@//third_party/tvm:patches/graph-metadata-API.diff"
+        ],
+        patch_args = ["-p1"],
     )
