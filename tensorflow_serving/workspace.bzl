@@ -106,10 +106,12 @@ def tf_serving_workspace():
             "https://mirror.bazel.build/github.com/google/glog/archive/028d37889a1e80e8a07da1b8945ac706259e5fd8.tar.gz",
             "https://github.com/google/glog/archive/028d37889a1e80e8a07da1b8945ac706259e5fd8.tar.gz",
         ],
+    )
+
     # ===== tvm (tvm.ai) dependencies =====
     new_git_repository(
         name = "com_github_dmlc_tvm",
-        remote = "https://github.com/dmlc/tvm.git",
+        remote = "https://github.com/apache/tvm.git",
         init_submodules = True,
         branch = "master",
         build_file = "@//third_party/tvm:BUILD",

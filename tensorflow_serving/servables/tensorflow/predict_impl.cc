@@ -59,13 +59,6 @@ Status TensorflowPredictor::PredictWithModelSpec(const RunOptions& run_options,
     return status;
   }
 
-  if (use_saved_model_) {
-    ServableHandle<SavedModelBundle> bundle;
-    TF_RETURN_IF_ERROR(core->GetServableHandle(model_spec, &bundle));
-    return RunPredict(run_options, bundle->meta_graph_def, bundle.id().version,
-                      bundle->session.get(), request, response);
-  }
-
   ServableHandle<SavedModelBundle> bundle;
   TF_RETURN_IF_ERROR(core->GetServableHandle(model_spec, &bundle));
   thread::ThreadPoolOptions thread_pool_options;

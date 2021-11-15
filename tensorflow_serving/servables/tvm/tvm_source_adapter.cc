@@ -23,7 +23,6 @@ limitations under the License.
 #include "tensorflow_serving/resources/resource_util.h"
 #include "tensorflow_serving/resources/resource_values.h"
 #include "tensorflow_serving/resources/resources.pb.h"
-#include "tensorflow_serving/util/optional.h"
 #include "tensorflow_serving/servables/tvm/tvm_factory.h"
 
 namespace tensorflow {
